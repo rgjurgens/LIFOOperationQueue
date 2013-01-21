@@ -6,7 +6,7 @@ A last-in-first-out NSOperation queue written in Objective-C.
 What's it for?
 -------------
 
-A LIFO queue can help priortize new operations over old ones. One such example would be loading images in a UITableView. The LIFO approach will ensure that images on screen take higher priority than those a user has already scrolled past.
+A LIFO queue can help prioritize new operations over old ones. One such example would be loading images in a `UITableView`. The LIFO approach will ensure that images on screen take higher priority than those a user has already scrolled past.
 
 How does it work?
 -----------------
@@ -43,7 +43,7 @@ Here are some quick examples of loading images in a `UITableView` with [AFNetwor
         return cell;
     }
 
-The code above would prioritize the latest cell's image over thsoe that may not be on screen anymore. You can accomplish the same thing without AFNetworking by using blocks.
+The code above would prioritize the latest cell's image over those that may not be on screen anymore. You can accomplish the same thing without AFNetworking by using blocks.
 
     - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
         // create cell
