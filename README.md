@@ -26,7 +26,6 @@ Here are some quick examples of loading images in a `UITableView` with [AFNetwor
         }
         
         // initialize imageView.image
-        
         cell.imageView.image = [UIImage imageNamed:@"blankImage.png"];
         
         // create image request
@@ -54,7 +53,6 @@ The code above would prioritize the latest cell's image over thsoe that may not 
         }
         
         // initialize imageView.image
-        
         cell.imageView.image = [UIImage imageNamed:@"blankImage.png"];
         
         // add block to LIFOOperationQueue
