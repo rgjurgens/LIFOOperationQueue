@@ -68,9 +68,7 @@
 //
 
 - (void)addOperationWithBlock:(void (^)(void))block {
-    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), block);
-    }];
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:block];
     
     [self addOperation:op];
 }
