@@ -9,9 +9,11 @@
 @interface LIFOOperationQueue ()
 
 @property (nonatomic, strong) NSMutableArray *runningOperations;
+@property dispatch_queue_t downloadQueue;
 
 - (void)startNextOperation;
 - (void)startOperation:(NSOperation *)op;
+
 
 @end
 
@@ -29,6 +31,8 @@
     if (self) {
         self.operations = [NSMutableArray array];
         self.runningOperations = [NSMutableArray array];
+        _downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        
     }
     
     return self;
@@ -57,6 +61,15 @@
     }
     
     [self.operations insertObject:op atIndex:0];
+    
+    //lijst kort houden
+    
+//    if([self.operations count] > 15)
+//    {
+//        [self.operations removeLastObject];
+//    }
+    
+    
     
     if ( self.runningOperations.count < self.maxConcurrentOperations ) {
         [self startNextOperation];
@@ -135,7 +148,14 @@
     
     [self.runningOperations addObject:op];
     
-    [op start];
+    dispatch_async(_downloadQueue, ^{
+        if (!op.isExecuting)
+        {
+            [op start];
+        }
+        
+    });
+    
 }
 
 #pragma mark - Queue Information
